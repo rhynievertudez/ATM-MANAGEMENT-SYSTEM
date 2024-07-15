@@ -1,0 +1,179 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.WindowConstants;
+import javax.swing.border.MatteBorder;
+
+public class main extends JFrame {
+
+	private JPanel panel = new JPanel();
+	
+	private JButton btnhome = new JButton("Home");
+	private JButton btnlist = new JButton("Customer Service");
+	private JButton btncreate = new JButton("Create New Account");
+	private JButton btnlogout = new JButton("Logout");
+	
+	private static JLabel timelabel = new JLabel();
+	private static JLabel datelabel = new JLabel();
+	
+	private Timer timedate;
+	
+	private static loginForm mainhome;
+	
+    main(){
+    	
+    	JFrame mainframe = new JFrame(" Welcome ");
+    	   ImageIcon lg = new ImageIcon("images/homepictureeeee.png");
+		   JLabel label = new JLabel(lg);
+		   mainframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		   mainframe.pack(); 
+		   mainframe.setSize(new Dimension(1450,  700)); 
+		   mainframe.setVisible(true);
+		   mainframe.setLocationRelativeTo(null); 
+		   ActionListener actionListener = new ActionListener(){
+				public void actionPerformed(ActionEvent arg0){
+					
+					Date time = new Date();
+					DateFormat timeformat = new SimpleDateFormat("hh:mm:ss a");
+					String time1 = timeformat.format(time);
+					timelabel.setText(time1);
+					
+					Date date = new Date();
+					DateFormat timeformat1 = new SimpleDateFormat("dd/MM/yyyy");
+					String time2 = timeformat1.format(date);
+					datelabel.setText(time2);
+				}
+		   };
+		   
+		  int logoheight = 600;
+		  int logowidth = 900;
+		  label.setSize(logowidth,logoheight);
+		  label.setOpaque(false);
+		  label.setBounds(300, 80, logowidth, logoheight);
+		  mainframe.add(label);
+		   
+		  timedate = new Timer(1000, actionListener);
+		  timedate.setInitialDelay(0);
+		  timedate.start();
+		   
+	     JPanel panel1 = new JPanel(){
+	    	 protected void paintComponent(Graphics g) {
+				   super.paintComponent(g);
+				   Graphics2D g2d = (Graphics2D) g;
+				   g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+				   int w = getWidth();
+				   int h = getHeight();
+				   Color color1 = (new Color(190, 233, 232));
+				   Color color2 = (new Color(27, 73, 101));
+				   GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
+				   g2d.setPaint(gp);
+				   g2d.fillRect(0, 0, w, h);
+				   
+			}
+		};
+			  
+	     JPanel panel2 = new JPanel(){
+	    	protected void paintComponent(Graphics g) {
+				   super.paintComponent(g);
+				   Graphics2D g2d = (Graphics2D) g;
+				   g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+				   int w = getWidth();
+				   int h = getHeight();
+				   Color color1 = (new Color(190, 233, 232));
+				   Color color2 = (new Color(27, 73, 101));
+				   GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
+				   g2d.setPaint(gp);
+				   g2d.fillRect(0, 0, w, h);
+				   
+			}
+	    };
+	    
+	    mainframe.add(panel);
+		panel.setLayout(null);
+		  
+		panel.add(btnhome);
+		panel.add(btnlist);
+		panel.add(btncreate);
+		panel.add(btnlogout);
+		panel.add(timelabel);
+	    panel.add(datelabel);
+		panel.add(panel1);
+		panel.add(panel2);
+
+		      panel1.setBounds(0, 0, 230, 692);
+		      panel2.setBounds(0, 0, 1428, 117);
+		      
+		      timelabel.setBounds(1047, 0, 377, 64); 
+		      timelabel.setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 30));
+		      timelabel.setForeground(Color.WHITE);
+		        
+		      datelabel.setBounds(1047, 68, 376, 44);
+		      datelabel.setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 20));
+		      datelabel.setForeground(Color.WHITE);
+		      
+		      btnhome.setBounds(0, 210, 230, 98);
+		      btnhome.setFocusable(false);
+		      btnhome.setOpaque(false);
+		      btnhome.setBackground(Color.WHITE);
+		      btnhome.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(202, 233, 255)));
+		      btnhome.setForeground(Color.WHITE);
+		      btnhome.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		      btnhome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		      
+		      btnlist.setBounds(0, 309, 230, 98);
+		      btnlist.setFocusable(false);
+		      btnlist.setOpaque(false);
+		      btnlist.setBackground(Color.WHITE);
+		      btnlist.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(202, 233, 255)));
+		      btnlist.setForeground(Color.WHITE);
+		      btnlist.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		      btnlist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		      
+		      btncreate.setBounds(0, 408, 230, 98);
+		      btncreate.setFocusable(false);
+		      btncreate.setOpaque(false);
+		      btncreate.setBackground(Color.WHITE);
+		      btncreate.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(202, 233, 255)));
+		      btncreate.setForeground(Color.WHITE);
+		      btncreate.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		      btncreate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		      
+		      btnlogout.setBounds(0, 506, 230, 98);
+		      btnlogout.setFocusable(false);
+		      btnlogout.setOpaque(false);
+		      btnlogout.setBackground(Color.WHITE);
+		      btnlogout.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(202, 233, 255)));
+		      btnlogout.setForeground(Color.WHITE);
+		      btnlogout.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		      btnlogout.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		      btnlogout.addActionListener(new ActionListener(){
+		         public void actionPerformed(ActionEvent arg0){
+						int out = JOptionPane.showConfirmDialog(panel, "Are you sure to logout?", "Exisiting the system", JOptionPane.YES_NO_OPTION);
+						
+						if(out == JOptionPane.YES_OPTION){
+							mainhome = new loginForm();
+							mainframe.dispose();
+							
+						}
+						else {
+							mainframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+						}	
+					}
+				}); 
+	      }
+	}
+
+		        
+		 
+	

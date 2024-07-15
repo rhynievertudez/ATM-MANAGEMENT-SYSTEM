@@ -1,0 +1,242 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.border.MatteBorder;
+
+public class loginForm  {
+	
+	private static JPanel panel = new JPanel();
+	private static JPanel paneline = new JPanel();
+	
+	private static JLabel userlabel = new JLabel("Username");
+	private static JLabel passwordlabel = new JLabel("Password");
+
+	private static JButton btnlogin = new JButton("Login");
+	
+	private static JTextField userText = new JTextField();
+
+	private static JCheckBox showpass = new JCheckBox("Show Password"); 
+	
+	private static JPasswordField passwordText = new JPasswordField(); 
+	
+	private static main mainframe; 
+	
+	public loginForm(){
+		
+		JFrame frame = new JFrame(" Welcome ");
+		ImageIcon lg = new ImageIcon("images/ezmonies.png");
+		JLabel label = new JLabel(lg);
+		ImageIcon ul = new ImageIcon("images/usericon.png");
+		JLabel label1 = new JLabel(ul);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.pack(); 
+        frame.setSize(new Dimension(712,  448));
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+ 
+		int logoheight = 480;
+		int logowidth = 400;
+		label.setSize(logowidth,logoheight);
+		label.setOpaque(false);
+		label.setBounds(0, 0, logowidth, logoheight);
+		frame.add(label);
+		panel.add(label);
+		
+		int logoheight1 = 200;
+		int logowidth1 = 1100;
+		label1.setSize(logowidth1,logoheight1);
+		label1.setOpaque(false);
+		label1.setBounds(0, 0, logowidth1, logoheight1);
+		frame.add(label1);
+		panel.add(label1);
+   
+		JPanel panelbox1 = new JPanel() {
+			 protected void paintComponent(Graphics g) {
+		        	super.paintComponent(g);
+		            Graphics2D g2d = (Graphics2D) g;
+		            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		            int w = getWidth();
+		            int h = getHeight();
+		            Color color1 = (new Color(157, 78, 221));
+		            Color color2 = (new Color(24,0,34));
+		            GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
+		            g2d.setPaint(gp);
+		            g2d.fillRect(0, 0, w, h);
+				}
+		 };
+		 frame.add(panel);
+	     panel.setLayout(null);
+		 
+	     panel.add(paneline);
+	     panel.add(userlabel);
+	     panel.add(passwordlabel);
+	     panel.add(userText);
+	     panel.add(passwordText);
+	     panel.add(showpass);
+	     panel.add(btnlogin);
+	     panel.add(panelbox1);
+	    
+			paneline.setBounds(-387, 0,1090, 15);
+			paneline.setBackground(new Color(255, 187, 59));
+	     
+			panelbox1.setBounds(361, 15, 340, 450);
+			panelbox1.setForeground(Color.WHITE);
+			
+	        userlabel.setBounds(420, 170, 78, 26);
+	        userlabel.setForeground(Color.WHITE);
+	    
+	        passwordlabel.setBounds(420, 250, 78, 14);
+	        passwordlabel.setForeground(Color.WHITE); 
+	    
+	        userText.setBounds(420, 200, 260, 20);
+	        userText.setOpaque(false);
+	        userText.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(255, 187, 59)));
+	        userText.setBackground(Color.WHITE);
+	        userText.setForeground(Color.WHITE);
+	        userText.addKeyListener(new KeyAdapter(){
+				public void keyPressed(KeyEvent e){
+					if(e.getKeyCode() == 10) {
+						if(userText.getText().equals("") || passwordText.getText().equals("")) {
+							JOptionPane.showMessageDialog(panel, "Please input username and password, Thank you");
+							
+						}
+						else if(userText.getText().equals("alpha") && passwordText.getText().equals("windows1")) {
+								JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+								
+								 mainframe = new main ();
+								 frame.dispose();
+						}
+						else if(userText.getText().equals("bravo") && passwordText.getText().equals("windows2")) {
+								JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+								
+								 mainframe = new main ();
+								 frame.dispose();
+						}
+						else if(userText.getText().equals("charlie") && passwordText.getText().equals("windows3")) {
+							    JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+							
+							 mainframe = new main ();
+							 frame.dispose();
+					   } 
+					   else{
+						   JOptionPane.showMessageDialog(panel, "Sorry, invalid username or password. Please try again","Validation", JOptionPane.ERROR_MESSAGE);
+					   }
+							userText.requestFocus(true);
+							userText.setText("");
+							passwordText.setText("");
+					   } 
+					}
+				});  
+
+	        passwordText.setBounds(420, 270, 260, 20);
+	        passwordText.setOpaque(false);
+	        passwordText.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(255, 187, 59)));
+	        passwordText.setBackground(Color.WHITE);
+	        passwordText.setForeground(Color.WHITE);
+	        passwordText.addKeyListener(new KeyAdapter(){
+				public void keyPressed(KeyEvent e){
+					if(e.getKeyCode() == 10){
+						if(userText.getText().equals("") || passwordText.getText().equals("")) {
+							JOptionPane.showMessageDialog(panel, "Please input username and password, Thank you");
+							
+						}
+						else if(userText.getText().equals("alpha") && passwordText.getText().equals("windows1")) {
+								JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+								
+								 mainframe = new main ();
+								 frame.dispose();
+						}
+						else if(userText.getText().equals("bravo") && passwordText.getText().equals("windows2")) {
+								JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+								
+								 mainframe = new main ();
+								 frame.dispose();
+						}
+						else if(userText.getText().equals("charlie") && passwordText.getText().equals("windows3")) {
+							    JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+							
+							 mainframe = new main ();
+							 frame.dispose();
+					   } 
+					   else{
+						   JOptionPane.showMessageDialog(panel, "Sorry, invalid username or password. Please try again","Validation", JOptionPane.ERROR_MESSAGE);
+					   }
+							userText.requestFocus(true);
+							userText.setText("");
+							passwordText.setText("");	
+					   }
+					}
+				});  
+	        
+	        showpass.setBounds(420, 300, 119, 23);
+			showpass.setOpaque(false);
+			showpass.setForeground(Color.WHITE);
+	        showpass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			showpass.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(showpass.isSelected()) 
+					{
+						passwordText.setEchoChar((char)0);
+					}
+					 else{
+						passwordText.setEchoChar('•');
+					}
+				}
+			});
+			
+			btnlogin.setBounds(460, 330, 164, 45);
+			btnlogin.setFocusable(false);
+			btnlogin.setOpaque(false);
+			btnlogin.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(255, 187, 59)));
+			btnlogin.setBackground(Color.WHITE);
+			btnlogin.setForeground(new Color(255, 187, 59));
+			btnlogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnlogin.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					if(userText.getText().equals("") || passwordText.getText().equals("")) {
+						JOptionPane.showMessageDialog(panel, "Please input username and password, Thank you");
+						
+					}
+					else if(userText.getText().equals("alpha") && passwordText.getText().equals("windows1")) {
+							JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+							
+							 mainframe = new main ();
+							 frame.dispose();
+					}
+					else if(userText.getText().equals("bravo") && passwordText.getText().equals("windows2")) {
+							JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+							
+							 mainframe = new main ();
+							 frame.dispose();
+					}
+					else if(userText.getText().equals("charlie") && passwordText.getText().equals("windows3")) {
+						    JOptionPane.showMessageDialog(panel, " Login Successfully! ");
+						
+						 mainframe = new main ();
+						 frame.dispose();
+				   } 
+				   else{
+					   JOptionPane.showMessageDialog(panel, "Sorry, invalid username or password. Please try again","Validation", JOptionPane.ERROR_MESSAGE);
+				   }
+						userText.requestFocus(true);
+						userText.setText("");
+						passwordText.setText("");	
+				}
+			});  
+		}
+
+    public static void main(String[] args){
+	    new loginForm();
+   }
+}
+
+			
+		 
+		
+		
+    		
+			 

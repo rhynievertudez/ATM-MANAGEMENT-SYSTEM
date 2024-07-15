@@ -1,0 +1,242 @@
+package finals.group3.project;
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JCheckBox;
+import javax.swing.border.MatteBorder;
+
+public class loginForm  {
+	
+	private static JLabel userlabel = new JLabel("Username");
+	private static JLabel passwordlabel = new JLabel("Password");
+	private static JLabel timelabel = new JLabel();
+	private static JLabel datelabel = new JLabel();
+	
+	private static JButton btnlogin = new JButton("Login");
+	
+	private static JPanel panelbox = new JPanel();
+	
+	private static JTextField userText = new JTextField();
+
+	private static JCheckBox showpass = new JCheckBox("Show Password"); 
+	
+	private static JPasswordField passwordText = new JPasswordField(); 
+	
+	private Timer timedate;
+	
+	private static main mainframe; 
+	
+	loginForm() {
+		
+		JFrame frame = new JFrame(" Welcome ");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.pack(); 
+        frame.setSize(new Dimension(712,  448)); 
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        ActionListener actionListener = new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				
+				Date time = new Date();
+				DateFormat timeformat = new SimpleDateFormat("HH:mm:ss a");
+				String time1 = timeformat.format(time);
+				timelabel.setText(time1);
+				
+				Date date = new Date();
+				DateFormat timeformat1 = new SimpleDateFormat("dd/MM/yyyy");
+				String time2 = timeformat1.format(date);
+				datelabel.setText(time2);
+			}
+	   };
+	   
+	   timedate = new Timer(1000, actionListener);
+	   timedate.setInitialDelay(0);
+	   timedate.start();
+   
+		 JPanel panel = new JPanel() {
+			 protected void paintComponent(Graphics g) {
+		        	super.paintComponent(g);
+		            Graphics2D g2d = (Graphics2D) g;
+		            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		            int w = getWidth();
+		            int h = getHeight();
+		            Color color1 = (new Color(190, 233, 232));
+		            Color color2 = (new Color(27, 73, 101));
+		            GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
+		            g2d.setPaint(gp);
+		            g2d.fillRect(0, 0, w, h);
+				}
+		 };
+		 
+		 frame.add(panel);
+	     panel.setLayout(null);
+		 
+	     panel.add(userlabel);
+	     panel.add(passwordlabel);
+	     panel.add(userText);
+	     panel.add(passwordText);
+	     panel.add(showpass);
+	     panel.add(btnlogin);
+	     panel.add(panelbox);
+	     panel.add(timelabel);
+	     panel.add(datelabel);
+			
+			panelbox.setBounds(410, 66, 237, 290);
+			panelbox.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(219, 231, 228)));
+			panelbox.setForeground(Color.WHITE);
+			
+	        userlabel.setBounds(500, 97, 78, 26);
+	        userlabel.setForeground(Color.BLACK);
+	    
+	        passwordlabel.setBounds(500, 166, 78, 14);
+	        passwordlabel.setForeground(Color.BLACK);        
+
+	        timelabel.setBounds(20, 262, 350, 100); 
+	        timelabel.setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 50));
+	        timelabel.setForeground(Color.WHITE);
+	        
+	        datelabel.setBounds(20, 323, 300, 99);
+	        datelabel.setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 30));
+	        datelabel.setForeground(Color.WHITE);
+	    
+	        userText.setBounds(445, 134, 164, 20);
+	        userText.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+	        userText.setBackground(Color.WHITE);
+	        userText.setOpaque(false);
+	        userText.setForeground(Color.BLACK);
+	        userText.addKeyListener(new KeyAdapter(){
+				public void keyPressed(KeyEvent e){
+					if(e.getKeyCode() == 10) {
+						if(userText.getText().equals("") || passwordText.getText().equals("")) {
+							
+							JOptionPane.showMessageDialog(panel, "Please input username and password","Validation",JOptionPane.INFORMATION_MESSAGE);
+							
+						 }else{
+							
+							if(userText.getText().equals("admin") && passwordText.getText().equals("admin")) {
+								
+								JOptionPane.showMessageDialog(panel, "Login Successfully!");
+								
+								 mainframe = new main ();
+								 frame.dispose();
+								
+							}else{
+								JOptionPane.showMessageDialog(panel, "Sorry, Invalid Username or Password", "Confirmation", JOptionPane.ERROR_MESSAGE);
+							}
+						}
+						
+						userText.requestFocus(true);
+						userText.setText("");
+						passwordText.setText("");
+						
+						}
+					}
+			});
+	         
+	        passwordText.setBounds(445, 191, 164, 20);
+	        passwordText.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+	        passwordText.setBackground(Color.WHITE);
+	        passwordText.setOpaque(false);
+	        passwordText.setForeground(Color.BLACK);
+	        passwordText.addKeyListener(new KeyAdapter(){
+				public void keyPressed(KeyEvent e){
+					if(e.getKeyCode() == 10){
+						if(userText.getText().equals("") || passwordText.getText().equals("")) {
+							
+							JOptionPane.showMessageDialog(panel, "Please input username and password","Validation",JOptionPane.INFORMATION_MESSAGE);
+							
+						 }else{
+							
+							if(userText.getText().equals("admin") && passwordText.getText().equals("admin")) {
+								
+								JOptionPane.showMessageDialog(panel, "Login Successfully!");
+								
+							    mainframe = new main ();
+								frame.dispose();
+								
+							}else{
+								JOptionPane.showMessageDialog(panel, "Sorry, Invalid Username or Password", "Confirmation", JOptionPane.ERROR_MESSAGE);
+							}
+						}
+						
+						userText.requestFocus(true);
+						userText.setText("");
+						passwordText.setText("");
+						
+						}
+					}
+			});
+	        
+	        showpass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        showpass.setBounds(470, 225, 119, 23);
+			showpass.setOpaque(false);
+			showpass.setForeground(Color.BLACK);
+			showpass.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(showpass.isSelected()) 
+					{
+						passwordText.setEchoChar((char)0);
+					}else{
+						passwordText.setEchoChar('•');
+					}
+				}
+			});
+	        
+			btnlogin.setFocusable(false);
+			btnlogin.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+			btnlogin.setBackground(new Color(95, 168, 211));
+			btnlogin.setForeground(Color.BLACK);
+			btnlogin.setBounds(447, 275, 164, 45);
+			btnlogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnlogin.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					
+					if(userText.getText().equals("") || passwordText.getText().equals("")) {
+						
+						JOptionPane.showMessageDialog(panel, "Please input Username and Password");
+						
+					}else{
+						if(userText.getText().equals("admin") && passwordText.getText().equals("admin")) {
+							
+							JOptionPane.showMessageDialog(panel, "Login Successfully!");
+							
+							 mainframe = new main ();
+							 frame.dispose();
+				
+						 }else{
+							JOptionPane.showMessageDialog(panel, "Sorry, Invalid Username or Password","Validation", JOptionPane.ERROR_MESSAGE);
+						 }
+						
+						userText.requestFocus(true);
+						userText.setText("");
+						passwordText.setText("");
+						
+					}
+				}
+			});             
+	}
+
+    public static void main(String[] args){
+	    new loginForm();
+   }
+}
+
+			
+		 
+		
+		
+    		
+			 
